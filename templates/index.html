@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment.exe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <canvas id="swCanvas"></canvas>
+    <div class="scanlines"></div>
+    <main class="dashboard">
+        <header class="dashboard__header">
+            <h1 class="dashboard__title">sentiment.exe</h1>
+            <p class="dashboard__subtitle">// neural sentiment analysis interface | synthwave edition v1.0</p>
+        </header>
+        <div class="dashboard__grid">
+            <div class="card" id="InputCard">
+                <p class="card__label">// input terminal</p>
+                <textarea
+                    id="inputText"
+                    class="terminal-input"
+                    placeholder="Enter text to analyze..."
+                    maxlength="512"
+                    spellcheck="false"
+                ></textarea>
+                <p class="char-count" id="charCount">0 / 512</p>
+                <button class="analyze-btn" id="analyzeBtn">▶ &nbsp;analyze</button>
+            </div>
+            <div class="card" id="OutputCard">
+                <p class="card__label">// analysis output</p>
+                <div id="result-badge" class="resultBadge">AWAITING INPUT</div>
+                <p class="confidence-text">confidence: <span id="confidenceVal">—</span></p>
+
+                <div class="bar-row">
+                    <div class="bar-label"><span>positive</span><span id="posVal">—</span></div>
+                    <div class="bar-track"><div class="bar-fill bar-fill--pos" id="posBar"></div>
+                </div>
+
+                <div class="bar-row">
+                    <div class="bar-label"><span>neutral</span><span id="neuVal">—</span></div>
+                    <div class="bar-track"><div class="bar-fill bar-fill--neu" id="neuBar"></div>
+                </div>
+
+                <div class="bar-row">
+                    <div class="bar-label"><span>negative</span><span id="negVal">—</span></div>
+                    <div class="bar-track"><div class="bar-fill bar-fill--neg" id="negBar"></div>
+                </div>
+
+                <button class="copy-btn" id="copyBtn">⎘ &nbsp;copy results</button>
+            </div>
+        </div>
+        <div class="history-panel" id="historyPanel">
+            <div class="history-panel__header">
+                <p class="card__label">// analysis history</p>
+                <button class="clear-btn" id="clearBtn">✕ &nbsp;clear</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <p class="history-empty">// no analyses yet...</p>
+            </div>
+        </div>
+        
+    </main>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
