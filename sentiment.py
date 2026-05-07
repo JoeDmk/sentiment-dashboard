@@ -42,5 +42,3 @@ def analyze_sentiment(text: str) -> dict:
 if __name__ == "__main__":
     test = "I absolutely love this project! It exceeded all my expectations."
     print(analyze_sentiment(test))
-
-print("Raw results:", results)
