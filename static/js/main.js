@@ -1,11 +1,9 @@
-const { set } = require("animejs");
-
-const input = document.getElementById('inputText');
+const input = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
 const analyzeBtn = document.getElementById('analyzeBtn');
 const resultBadge = document.getElementById('resultBadge');
 const confidenceVal = document.getElementById('confidenceVal');
-const posbar = document.getElementById('posBar');
+const posBar = document.getElementById('posBar');
 const neuBar = document.getElementById('neuBar');
 const negBar = document.getElementById('negBar');
 const posVal = document.getElementById('posVal');
@@ -81,10 +79,13 @@ analyzeBtn.addEventListener('click', async () => {
         if (!response.ok) throw new Error('Network response was not ok');
 
         const data = await response.json();
-        lastResult data;
+        lastResult = data;
 
         updateUI(data);
         addToHistory(text, data);
+
+        const color = data.label === 'Positive' ? '#00ffe7' : data.label === 'Negative' ? '#ff3aff' : '#b44fff';
+        addRipple(W * 0.5, H * 0.5, color);
 
     } catch (error) {
         resultBadge.textContent = 'ERROR';
@@ -117,7 +118,7 @@ function renderHistory() {
 
     historyList.querySelectorAll('.history-row').forEach(row => {
         row.addEventListener('click', () => {
-            input.value = histor[parseInt(row.dataset.index)].text;
+            input.value = history[parseInt(row.dataset.index)].text;
             const len = input.value.length;
             charCount.textContent = `${len} / 512`;
             charCount.classList.toggle('warn', len > 450);
@@ -269,6 +270,3 @@ function addRipple(x, y, color) {
     ripples.push({ x, y, r: i * 18, alpha: 0.5 - i * 0.1, color });
   }
 }
-
-const color = data.label === 'Positive' ? '#00ffe7' : data.label === 'Negative' ? '#ff3aff' : '#b44fff';
-addRipple(W * 0.5, H * 0.5, color);

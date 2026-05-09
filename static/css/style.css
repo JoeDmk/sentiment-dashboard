@@ -374,7 +374,7 @@ body {
   color: var(--text-secondary);
 }
 
-.history-row__badge { font-size: 9px; letter-spacing: 1px; }
+.history-row__badge { font-size: 5px; letter-spacing: 1px; }
 .history-row__badge.pos { color: var(--neon-cyan);   text-shadow: 0 0 6px rgba(0,255,231,0.5); }
 .history-row__badge.neg { color: var(--neon-pink);   text-shadow: 0 0 6px rgba(255,58,255,0.5); }
 .history-row__badge.neu { color: var(--neon-purple); text-shadow: 0 0 6px rgba(180,79,255,0.5); }
